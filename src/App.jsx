@@ -8,11 +8,12 @@ import './index.css';
 const Container = styled.div`
   height: 100vh;
   color: white;
-  background: url("/image/bg.jpeg");
+  background: url("/src/assets/image/bg.jpeg");
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
   overflow-y: auto;
   scrollbar-width: none;
+
   &::-webkit-scrollbar {
     display: none;
   }
