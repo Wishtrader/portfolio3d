@@ -1,18 +1,116 @@
 import React from 'react';
 import styled from "styled-components";
+import Navbar from "./Navbar.jsx";
 
 const Section = styled.div`
   height: 100vh;
-  background-color: rebeccapurple;
   scroll-snap-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+`
+
+const Container = styled.div`
+  height: 100vh;
+  width: 1440px;
+  display: flex;
+  justify-content: space-between;
+`
+
+const Left = styled.div`
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+`
+
+const Right = styled.div`
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+`
+
+const Title = styled.h1`
+  font-size: 5rem;
+`
+
+const WhatWeDo = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+`
+
+const Line = styled.img`
+ height: 5px;
+`
+
+const Subtitle = styled.h2`
+  font-size: 2rem;
+  color: #da4ea2;
+`
+
+const Desc = styled.p`
+  font-size: 1.6rem;
+  color: lightgray;
+`
+
+const Button = styled.button`
+  background-color: #da4ea2;
+  color: white;
+  width: 100px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-transform: uppercase;
+  margin-top: 3rem;
+`
+
+const Img = styled.img`
+  height: 600px;
+  object-fit: contain;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  border: 1vw solid #da4ea2;
+  transform: rotate(-5deg);
+  //animation: animate 2s infinite ease-in-out alternate;
+  
+  @keyframes animate {
+    to {
+      transform: translateY(2vw);
+    }
+  }
 `
 
 const Hero = () => {
   return (
     <Section>
-      Home
+      <Navbar />
+      <Container>
+        <Left>
+          <Title>Think. Make. Solve</Title>
+          <WhatWeDo>
+            <Line src="public/image/line.png" />
+            <Subtitle>What We Do</Subtitle>
+          </WhatWeDo>
+          <Desc>we enjoy creating delightful, human-centered digital experiences.</Desc>
+          <Button>Learn More</Button>
+        </Left>
+        <Right>
+          <Img src='public/image/man.png' />
+        </Right>
+      </Container>
     </Section>
   );
 };
 
 export default Hero;
+//https://youtu.be/qALsVa-V9qo?t=2471
