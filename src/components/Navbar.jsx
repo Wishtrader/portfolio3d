@@ -64,7 +64,7 @@ const Navbar = () => {
     <Section>
       <Container>
         <Links>
-          <Logo src="./public/image/logo.png" />
+          <Logo src="./image/logo.png" />
           <List>
             <ListItem>Home</ListItem>
             <ListItem>About</ListItem>
@@ -73,7 +73,7 @@ const Navbar = () => {
           </List>
         </Links>
         <Icons>
-          <Icon src="./public/image/search.png" />
+          <Icon src="/image/search.png" />
           <Button>Hire Now</Button>
         </Icons>
       </Container>
