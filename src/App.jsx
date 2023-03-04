@@ -8,7 +8,7 @@ import './index.css';
 const Container = styled.div`
   height: 100vh;
   color: white;
-  background: url("/src/assets/image/bg.jpeg");
+  background: url("/image/bg.jpeg");
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
   overflow-y: auto;
