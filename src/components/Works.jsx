@@ -17,7 +17,7 @@ const Section = styled.div`
 `
 
 const Container = styled.div`
-  width: 1400px;
+  width: 1440px;
   display: flex;
   justify-content: space-between;
 `
@@ -33,6 +33,7 @@ const List = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 20px;
+  padding-left: 0;
 `
 
 const ListItem = styled.li`

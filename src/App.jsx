@@ -4,6 +4,7 @@ import Works from "./components/Works.jsx";
 import Contact from "./components/Contact.jsx";
 import styled from "styled-components";
 import './index.css';
+import Test from "./components/Test.jsx";
 
 const Container = styled.div`
   height: 100vh;
@@ -26,6 +27,7 @@ function App() {
       <About />
       <Works />
       <Contact />
+      <Test />
     </Container>
   )
 }
