@@ -1,22 +1,41 @@
-import React from 'react';
+import React, { Suspense } from "react";
 import styled from "styled-components";
-import Navbar from "./Navbar.jsx";
+import Navbar from "./Navbar";
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls, Sphere, MeshDistortMaterial } from "@react-three/drei";
 
 const Section = styled.div`
   height: 100vh;
   scroll-snap-align: center;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  flex-direction: column;
-`
+  width: 100%;
+  margin: auto;
+
+  @media only screen and (max-width: 768px) {
+    height: 200vh;
+    margin: auto;
+  }
+`;
 
 const Container = styled.div`
-  height: 100vh;
-  width: 1440px;
+  height: 100%;
+  scroll-snap-align: center;
+  max-width: 1430px;
+  width: 100%;
   display: flex;
   justify-content: space-between;
-`
+  padding: 0 3%;
+
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+`;
 
 const Left = styled.div`
   flex: 2;
@@ -24,88 +43,121 @@ const Left = styled.div`
   flex-direction: column;
   justify-content: center;
   gap: 20px;
-`
 
-const Right = styled.div`
-  flex: 3;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  position: relative;
-`
+  @media only screen and (max-width: 768px) {
+    flex: 1;
+    align-items: center;
+  }
+`;
 
 const Title = styled.h1`
-  font-size: 5rem;
-`
+  font-size: 74px;
+
+  @media only screen and (max-width: 768px) {
+    text-align: center;
+  }
+`;
 
 const WhatWeDo = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
-`
+`;
 
 const Line = styled.img`
- height: 5px;
-`
+  height: 5px;
+`;
 
 const Subtitle = styled.h2`
-  font-size: 2rem;
   color: #da4ea2;
-`
+`;
 
 const Desc = styled.p`
-  font-size: 1.6rem;
+  font-size: 24px;
   color: lightgray;
-`
+  @media only screen and (max-width: 768px) {
+    padding: 20px;
+    text-align: center;
+  }
+`;
 
 const Button = styled.button`
   background-color: #da4ea2;
   color: white;
+  font-weight: 500;
   width: 100px;
   padding: 10px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  text-transform: uppercase;
-  margin-top: 3rem;
-`
+`;
+
+const Right = styled.div`
+  flex: 3;
+  position: relative;
+  @media only screen and (max-width: 768px) {
+    flex: 1;
+    width: 100%;
+  }
+`;
 
 const Img = styled.img`
-  height: 600px;
+  width: 25vw;
   object-fit: contain;
   position: absolute;
+  border: 15px solid #da4ea2;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
   margin: auto;
-  border: 1vw solid #da4ea2;
-  transform: rotate(-5deg);
-  //animation: animate 2s infinite ease-in-out alternate;
-  
+  animation: animate 2s infinite ease alternate;
+
+  @media only screen and (max-width: 768px) {
+    width: 300px;
+    height: 300px;
+  }
+
   @keyframes animate {
     to {
-      transform: translateY(2vw);
+      transform: translateY(20px);
     }
   }
-`
+`;
 
 const Hero = () => {
   return (
-    <Section>
+    <Section id="home">
       <Navbar />
       <Container>
         <Left>
-          <Title>Think. Make. Solve</Title>
+          <Title>Think. Make. Solve.</Title>
           <WhatWeDo>
             <Line src="/image/line.png" />
-            <Subtitle>What We Do</Subtitle>
+            <Subtitle>What we Do</Subtitle>
           </WhatWeDo>
-          <Desc>we enjoy creating delightful, human-centered digital experiences.</Desc>
+          <Desc>
+            we enjoy creating delightful, human-centered digital experiences.
+          </Desc>
           <Button>Learn More</Button>
         </Left>
         <Right>
-          <Img src='/image/man.png' />
+          <Canvas>
+            <Suspense fallback={null}>
+              <OrbitControls enableZoom={false} />
+              <ambientLight intensity={1} />
+              <directionalLight position={[3, 2, 1]} />
+              <Sphere args={[1, 100, 200]} scale={1.8}>
+                <MeshDistortMaterial
+                  color="#3d1c56"
+                  attach="material"
+                  distort={0.5}
+                  speed={2}
+                />
+              </Sphere>
+            </Suspense>
+          </Canvas>
+          <Img src="/image/man.png" />
         </Right>
       </Container>
     </Section>
@@ -113,4 +165,3 @@ const Hero = () => {
 };
 
 export default Hero;
-//https://youtu.be/qALsVa-V9qo?t=2471

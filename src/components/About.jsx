@@ -1,24 +1,41 @@
-import React from 'react';
+import React, { Suspense } from "react";
 import styled from "styled-components";
+import { OrbitControls } from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
+import Cube from "./Cube";
 
 const Section = styled.div`
   height: 100vh;
   scroll-snap-align: center;
   display: flex;
   justify-content: center;
-`
+`;
 
 const Container = styled.div`
   height: 100vh;
-  width: 1440px;
+  scroll-snap-align: center;
+  width: 100%;
+  padding: 0 3%;
+  max-width: 1400px;
   display: flex;
   justify-content: space-between;
-`
+`;
 
 const Left = styled.div`
   flex: 1;
-  position: relative;
-`
+
+  @media only screen and (max-width: 768px) {
+    display: none;
+  }
+`;
+
+const Title = styled.h1`
+  font-size: 74px;
+
+  @media only screen and (max-width: 768px) {
+    font-size: 60px;
+  }
+`;
 
 const Right = styled.div`
   flex: 1;
@@ -26,58 +43,68 @@ const Right = styled.div`
   flex-direction: column;
   justify-content: center;
   gap: 20px;
-`
 
-const Title = styled.h1`
-  font-size: 5rem;
-`
+  @media only screen and (max-width: 768px) {
+    align-items: center;
+    text-align: center;
+  }
+`;
 
 const WhatWeDo = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
-`
+`;
 
 const Line = styled.img`
- height: 5px;
-`
+  height: 5px;
+`;
 
 const Subtitle = styled.h2`
-  font-size: 2rem;
   color: #da4ea2;
-`
+`;
 
 const Desc = styled.p`
-  font-size: 1.6rem;
+  font-size: 24px;
   color: lightgray;
-`
+`;
 
 const Button = styled.button`
   background-color: #da4ea2;
   color: white;
+  font-weight: 500;
   width: 120px;
   padding: 10px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-top: 3rem;
-  text-transform: uppercase;
-`
+`;
 
 const About = () => {
   return (
-    <Section>
+    <Section id="about">
       <Container>
         <Left>
+          <Canvas camera={{ position: [5, 5, 5], fov: 25 }}>
+            <Suspense fallback={null}>
+              <ambientLight intensity={0.5} />
+              <directionalLight position={[3, 2, 1]} />
+              <Cube />
+              <OrbitControls enableZoom={false} autoRotate />
+            </Suspense>
+          </Canvas>
         </Left>
         <Right>
           <Title>Think outside the square space</Title>
           <WhatWeDo>
-            <Line src="public/image/line.png" />
-            <Subtitle>Who We Are</Subtitle>
+            <Line src="./image/line.png" />
+            <Subtitle>Who we Are</Subtitle>
           </WhatWeDo>
-          <Desc>a creative group of designers and developers with a passion for the arts.</Desc>
-          <Button>See Our Works</Button>
+          <Desc>
+            a creative group of designers and developers with a passion for the
+            arts.
+          </Desc>
+          <Button>See our works</Button>
         </Right>
       </Container>
     </Section>
